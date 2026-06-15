@@ -1,0 +1,318 @@
+@charset "UTF-8";
+
+/* --- 기본 초기화 및 부드러운 스크롤 --- */
+html {
+    scroll-behavior: smooth; /* 메뉴 클릭 시 부드럽게 이동 */
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #000000;
+    font-family: 'Arial', sans-serif; 
+    color: #ffffff; /* 기본 글자색 흰색 */
+}
+
+/* --- 상단 고정 메뉴바 --- */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between; /* 홈 아이콘과 메뉴를 양 끝으로 배치 */
+    align-items: center;
+    padding: 0 60px; 
+    box-sizing: border-box;
+    z-index: 1000; 
+    background-color: rgba(0, 0, 0, 0.8); /* 스크롤 시 배경 겹침 방지용 반투명 검정 */
+    backdrop-filter: blur(5px);
+}
+
+.home-icon {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 32px;
+    transition: color 0.3s;
+}
+
+.home-icon:hover {
+    color: #FF1493; /* 호버 시 민트색 */
+}
+
+.menu-item {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 40px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.menu-item:hover {
+    color: #FF1493;
+}
+
+/* =========================================
+   1. 메인 홈 화면 (콜라주 포트폴리오 영역)
+========================================= */
+.portfolio-wrapper {
+    width: 100%; 
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 60px 60px 60px; 
+    box-sizing: border-box;
+}
+
+.portfolio-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    max-height: 700px;
+}
+
+.item {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+/* --- 01. PORTFOLIO 글자 (민트색 호버 전환) --- */
+.item-01-container {
+    position: absolute; 
+    top: 22%; left: 51%; 
+    width: 40%; 
+    transform: translate(-50%, -50%); 
+    z-index: 100; 
+    cursor: pointer; 
+}
+
+.portfolio-img {
+    width: 100%; 
+    height: auto;
+    position: absolute; 
+    top: 0; left: 0;
+    transition: opacity 0.3s ease-in-out; 
+}
+
+.origin { opacity: 1; z-index: 101; }
+.mint { opacity: 0; z-index: 100; }
+.item-01-container:hover .origin { opacity: 0; }
+.item-01-container:hover .mint { opacity: 1; }
+
+/* --- 개별 요소 정밀 좌표 --- */
+.item-02 { top: 28%; left: 30%; width: 15%; z-index: 10; }
+.item-03 { top: 36%; left: 26%; width: 18%; z-index: 50; }
+.item-04 { top: 21%; left: 41%; width: 10%; z-index: 10; }
+.item-05 { top: 20%; left: 65%; width: 15%; z-index: 10; }
+.item-06 { top: 18%; left: 75%; width: 6%; z-index: 10; }
+.item-07 { top: 28%; left: 74%; width: 10%; z-index: 10; }
+.item-08 { top: 40%; left: 72%; width: 7%; z-index: 10; }
+.item-09 { top: 55%; left: 76%; width: 7%; z-index: 10; }
+.item-10 { top: 70%; left: 67%; width: 15%; z-index: 50; }
+.item-11 { top: 74%; left: 31%; width: 22%; z-index: 110; }
+.item-12 { top: 52%; left: 20%; width: 6%; z-index: 10; }
+.item-13 { top: 58%; left: 26%; width: 6%; z-index: 10; }
+
+/* =========================================
+   2. WORK 페이지 영역 디자인
+========================================= */
+#work {
+    padding-top: 120px;
+    padding-bottom: 100px;
+    height: auto; 
+    min-height: 100vh;
+    background-color: #ffffff; /* 메인 화면과 미세하게 구분되는 아주 어두운 회색 */
+}
+
+.work-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px; /* 좌우 여백 */
+    text-align: left; 
+    box-sizing: border-box;
+}
+
+.work-category {
+    margin-bottom: 80px;
+}
+
+.category-title {
+    font-size: 24px;
+    color: #000000; 
+    border-left: 4px solid #FF1493; 
+    padding-left: 15px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; 
+}
+
+.work-item {
+    width: 100%;
+}
+
+/* 둥근 모서리의 16:9 직사각형 썸네일 박스 */
+.thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    background-color: #222222; 
+    border: 1px solid #333333;
+    border-radius: 15px; /* 모서리 둥글게 */
+    overflow: hidden;    /* 둥근 모서리 밖으로 튀어나오지 않게 */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+.thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 🌟 핵심: 이미지가 잘리지 않고 상자 안에 전부 쏙 들어가게 맞춤 */
+    transition: transform 0.3s ease; 
+}
+.thumbnail-img0 {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease; 
+}
+.thumbnail:hover {
+    border-color: #FF1493; 
+    background-color: #2a2a2a;
+}
+
+.work-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    color: #000000;
+}
+
+.work-tags {
+    font-size: 13px;
+    color: #888888; 
+    margin: 0;
+}
+
+/* =========================================
+   3. ABOUT ME / CONTACT 임시 페이지
+========================================= */
+.page-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px 20px 20px;
+    box-sizing: border-box;
+}
+
+.page-section h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #FF1493; 
+}
+
+.placeholder-about { background-color: #000000; }
+.placeholder-contact { background-color: #111111; }
+
+/* --- 자세히 보기 버튼 스타일 (수정됨) --- */
+
+/* 버튼을 담는 컨테이너 (오른쪽 정렬 역할 유지) */
+.more-btn-container {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 25px; 
+    padding-right: 10px; 
+}
+
+/* 🌟 수정된 버튼 기본 디자인 */
+.more-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: bold; /* 글씨가 흰색일 때 더 잘 보이도록 굵기 추가 */
+    
+    color: #ffffff; /* 글자색 하얀색 */
+    background-color: #FF1493; /* 버튼 바탕색 핑크 */
+    border: 1px solid #FF1493; /* 테두리도 핑크로 통일 */
+    
+    border-radius: 25px; 
+    text-decoration: none; 
+    letter-spacing: 1px; 
+    transition: all 0.3s ease; 
+    cursor: pointer;
+}
+
+/* 🌟 마우스를 올렸을 때 디자인 */
+.more-btn:hover {
+    color: #000000; /* 글씨색이 검정색으로 바뀜 */
+    background-color: #FF1493; /* 배경색은 핑크로 유지 */
+    
+    /* (선택 사항) 마우스 올렸을 때 살짝 밝아지는 느낌을 주고 싶다면 아래 코드의 주석을 푸세요 */
+    /* filter: brightness(1.1); */ 
+}
+
+.about-wrapper {
+    position: relative;
+    width: 900px; /* 전체 폴더 크기 */
+    height: 500px;
+    margin: 0 auto;
+}
+
+.about-bg { width: 100%; }
+
+.abs-el {
+    position: absolute;
+}
+
+/* 위치 조정 (상대 위치값 예시) */
+.title { top: 20px; left: 40px; width: 150px; }
+.photo { top: 100px; left: 40px; width: 130px; }
+.info-name { top: 130px; left: 200px; width: 300px; }
+.intro-text { top: 300px; left: 40px; width: 300px; }
+
+/* 오른쪽 영역 */
+.edu-title { top: 120px; left: 550px; width: 100px; }
+.edu-content { top: 155px; left: 630px; width: 200px; }
+.act-title { top: 190px; left: 550px; width: 80px; }
+.act-1 { top: 155px; left: 550px; width: 50px; }
+.act-2 { top: 230px; left: 550px; width: 50px; }
+.act-3 { top: 250px; left: 550px; width: 50px; }
+.act-4 { top: 270px; left: 550px; width: 50px; }
+.act-7 { top: 230px; left: 630px; width: 160px; }
+.act-8 { top: 250px; left: 630px; width: 200px; }
+.act-9 { top: 270px; left: 630px; width: 190px; }
+/* 나머지 act-2, 3, 4 등도 top 값을 30px씩 늘려가며 배치하세요 */
+
+.skill-title { top: 310px; left: 550px; width: 60px; }
+.skill-icons { top: 345px; left: 550px; display: flex; gap: 10px; }
+.skill-icons img { width: 40px; }
+
+/* --- ABOUT ME 섹션 배경 흰색으로 변경 --- */
+#aboutme {
+    background-color: #ffffff; /* 섹션 전체 배경을 흰색으로 */
+    color: #000000;           /* 텍스트는 검정색으로 */
+}
+
+/* 배경 이미지(핑크 폴더)가 흰색 배경 위에서 더 잘 보이게 살짝 그림자 추가 */
+.about-bg {
+    filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.1));
+}
+/* About Me 섹션 배경 흰색으로 고정 */
+#aboutme {
+    background-color: #ffffff;
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
